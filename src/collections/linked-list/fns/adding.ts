@@ -1,5 +1,6 @@
 import { LinkedListNode } from "../LinkedListNode";
 import { LinkedList } from "../LinkedList";
+import { incrementListLength } from "./internal";
 
 export function addHeadNode<TValue>(list: LinkedList<TValue>, node: LinkedListNode<TValue>) {
     internalAddHeadNode(list, node);
@@ -28,10 +29,11 @@ function internalAddHeadNode<TValue>(list: LinkedList<TValue>, node: LinkedListN
     list.head.prev = node;
     node.next = list.head;
     list.head = node;
+    incrementListLength(list);
 }
 
 function internalAddTailNode<TValue>(list: LinkedList<TValue>, node: LinkedListNode<TValue>) {
-    if (!list.head) {
+    if (!list.tail) {
         // Handle empty list
         internalAddNodeToEmptyList(list, node);
         return;
@@ -39,9 +41,11 @@ function internalAddTailNode<TValue>(list: LinkedList<TValue>, node: LinkedListN
     list.tail.next = node;
     node.prev = list.tail;
     list.tail = node;
+    incrementListLength(list);
 }
 
 function internalAddNodeToEmptyList<TValue>(list: LinkedList<TValue>, node: LinkedListNode<TValue>) {
     list.head = node;
     list.tail = node;
+    list.__setLength(1);
 }

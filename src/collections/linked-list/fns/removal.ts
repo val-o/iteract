@@ -1,6 +1,7 @@
 import { LinkedList } from "../LinkedList";
 import { find, findLast } from "./find";
 import { LinkedListNode } from "../LinkedListNode";
+import { decrementListLength } from "./internal";
 
 /**
  * Removes first occurrence of the specified value from the linked list
@@ -13,7 +14,7 @@ export function remove<TValue>(list: LinkedList<TValue>, value: TValue): boolean
         return false;
     }
 
-    internalRemoveNode(node);
+    internalRemoveNode(list, node);
     return true;
 }
 /**
@@ -27,22 +28,28 @@ export function removeLast<TValue>(list: LinkedList<TValue>, value: TValue): boo
         return false;
     }
 
-    internalRemoveNode(node);
+    internalRemoveNode(list, node);
     return true;
 }
 
-export function removeNode<TValue>(node: LinkedListNode<TValue>) {
-    internalRemoveNode(node);
+export function removeNode<TValue>(list: LinkedList<TValue>, node: LinkedListNode<TValue>) {
+    internalRemoveNode(list, node);
 }
 
-function internalRemoveNode<TValue>(node: LinkedListNode<TValue>) {
+function internalRemoveNode<TValue>(list: LinkedList<TValue>, node: LinkedListNode<TValue>) {
     const prevNode = node.prev;
     const nextNode = node.next;
     if (prevNode) {
         prevNode.next = nextNode;
+    } else {
+        list.head = nextNode;
     }
 
     if (nextNode) {
         nextNode.prev = prevNode;
+    } else {
+        list.tail = prevNode;
     }
+
+    decrementListLength(list);
 }

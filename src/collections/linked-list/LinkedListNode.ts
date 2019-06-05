@@ -1,12 +1,14 @@
 import { LinkedList } from "./LinkedList";
 
 export class LinkedListNode<TValue> {
-    public readonly list: LinkedList<TValue>;
-    public next: LinkedListNode<TValue>;
-    public prev: LinkedListNode<TValue>;
-
+    public next: LinkedListNode<TValue> | null = null;
+    public prev: LinkedListNode<TValue> | null = null;
     constructor(
         public value: TValue,
+
+        public readonly list: LinkedList<TValue>,
+
+
     ) {
 
     }
