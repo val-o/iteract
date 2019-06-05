@@ -1,11 +1,11 @@
 import { LinkedList } from "../LinkedList";
-import { addHeadNode } from "./adding";
+import { addNode } from "./add";
 import { LinkedListNode } from "../LinkedListNode";
 
 export function clone<TValue>(list: LinkedList<TValue>): LinkedList<TValue> {
     const resultList = new LinkedList<TValue>();
     for (let node of list) {
-        addHeadNode(resultList, node);
+        addNode(resultList, node);
     }
     return resultList;
 }
@@ -13,7 +13,7 @@ export function clone<TValue>(list: LinkedList<TValue>): LinkedList<TValue> {
 export function cloneDeep<TValue>(list: LinkedList<TValue>): LinkedList<TValue> {
     const resultList = new LinkedList<TValue>();
     for (let node of list) {
-        addHeadNode(resultList, cloneNode(node));
+        addNode(resultList, cloneNode(node));
     }
     return resultList;
 }
@@ -24,8 +24,8 @@ export function cloneNode<TValue>(node: LinkedListNode<TValue>): LinkedListNode<
         node.value,
         node.list,
     );
-    resultNode.next = resultNode.next;
-    resultNode.prev = resultNode.prev;
+    resultNode.next = node.next;
+    resultNode.prev = node.prev;
 
     return resultNode;
 }

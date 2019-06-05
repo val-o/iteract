@@ -1,4 +1,4 @@
-export { addHead, addHeadNode, addTail, addTailNode } from './adding';
+export { addHead, addHeadNode, add, addNode } from './add';
 export { toLinkedList, ValueSelector } from './convert';
 export { contains, find, findLast } from './find';
 export { isEmpty, isNotEmpty } from './list-fns';
