@@ -1,9 +1,9 @@
 import { LinkedList } from "../LinkedList";
-import { addHead } from "./add";
+import { add } from "./add";
 
 export function toLinkedList<TItem, TItemResult = TItem>(
     iterable: Iterable<TItem>,
-    valueSelector: ValueSelector<TItem, TItemResult>,
+    valueSelector: ValueSelector<TItem, TItemResult> = (item) => item as any as TItemResult, // TODO: Get rid of any
 ): LinkedList<TItem> {
     if (iterable instanceof LinkedList) {
         // Just cast down to list and refine interface.
@@ -12,7 +12,7 @@ export function toLinkedList<TItem, TItemResult = TItem>(
     const resultList = new LinkedList<TItem>();
     for (let item of iterable) {
         const value = valueSelector ? valueSelector(item) : item;
-        addHead(resultList, value);
+        add(resultList, value);
     }
     return resultList;
 }
