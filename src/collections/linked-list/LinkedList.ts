@@ -20,17 +20,11 @@ export class LinkedList<TValue> implements Iterable<LinkedListNode<TValue>> {
         this._length = 0;
     }
 
-    [Symbol.iterator](): Iterator<LinkedListNode<TValue>> {
+    public *[Symbol.iterator](): Iterator<LinkedListNode<TValue>> {
         let currentNode: LinkedListNode<TValue> | null = this._head;
-        return {
-            next() {
-                const result: IteratorResult<LinkedListNode<TValue>> = {
-                    value: currentNode!,
-                    done: !currentNode,
-                };
-                currentNode = currentNode && currentNode.next;
-                return result;
-            },
+        while(currentNode) {
+            yield currentNode;
+            currentNode = currentNode.next;
         }
     }
 

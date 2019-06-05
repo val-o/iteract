@@ -1,6 +1,5 @@
 import { LinkedList } from "../LinkedList";
-import { addHead } from "./adding";
-import { incrementListLength } from "./internal";
+import { addHead } from "./add";
 
 export function toLinkedList<TItem, TItemResult = TItem>(
     iterable: Iterable<TItem>,
@@ -14,7 +13,6 @@ export function toLinkedList<TItem, TItemResult = TItem>(
     for (let item of iterable) {
         const value = valueSelector ? valueSelector(item) : item;
         addHead(resultList, value);
-        incrementListLength(resultList);
     }
     return resultList;
 }

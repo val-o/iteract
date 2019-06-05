@@ -10,7 +10,10 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true
+        "noUnusedParameters": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "esModuleInterop": true,
     },
     "include": [
         "src/**/*"
