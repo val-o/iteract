@@ -1,5 +1,5 @@
-export function* map<TCollection extends IterableIterator<TItem>, TItem, TResultItem>(
-    collection: TCollection,
+export function* map<TItem, TResultItem>(
+    collection: Iterable<TItem>,
     selector: MapSelector<TItem, TResultItem>
 ): IterableIterator<TResultItem> {
     let index = 0;
@@ -8,4 +8,4 @@ export function* map<TCollection extends IterableIterator<TItem>, TItem, TResult
     }
 }
 
-export type MapSelector<TItem, TResult> = (item: TItem, index: number, list: IterableIterator<TItem>) => TResult;
+export type MapSelector<TItem, TResult> = (item: TItem, index: number, list: Iterable<TItem>) => TResult;

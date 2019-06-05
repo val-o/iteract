@@ -1,17 +1,23 @@
 import { LinkedList } from "../LinkedList";
-import { LinkedListNode } from "../LinkedListNode";
 
 /**
  * Reverses the order of the elements in the list.
  * @param list 
  */
-export function* reverse<T>(list: LinkedList<T>): IterableIterator<LinkedListNode<T>> {
-    let curretNode = list.tail;
-    if (!curretNode) {
-        return;
+export function reverse<T>(list: LinkedList<T>): LinkedList<T> {
+    if (list.length < 2) {
+        return list;
     }
-    while (curretNode) {
-        yield curretNode;
-        curretNode = curretNode.prev!;
+    const head = list.head;
+    list.head = list.tail;
+    list.tail = head;
+    let current = list.tail;
+    while (current) {
+        const tempPrev = current.prev;
+
+        current.prev = current.next;
+        current.next = tempPrev
+        current = current.prev;
     }
+    return list;
 }

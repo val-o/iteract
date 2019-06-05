@@ -27,6 +27,9 @@ export function toMap<TItem, TKey, TValue>(
 }
 
 export function toSet<TItem>(iterable: Iterable<TItem>): Set<TItem> {
+    if (iterable instanceof Set) {
+        return iterable;
+    }
     const result = new Set(iterable);
     return result;
 }
