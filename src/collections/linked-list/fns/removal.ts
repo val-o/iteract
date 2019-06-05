@@ -31,6 +31,10 @@ export function removeLast<TValue>(list: LinkedList<TValue>, value: TValue): boo
     return true;
 }
 
+export function removeNode<TValue>(node: LinkedListNode<TValue>) {
+    internalRemoveNode(node);
+}
+
 function internalRemoveNode<TValue>(node: LinkedListNode<TValue>) {
     const prevNode = node.prev;
     const nextNode = node.next;
